@@ -81,6 +81,7 @@ lib/
 ## 📌 Key Components
 
 - **BLoC**: State management using `flutter_bloc`
+- **Clean Architecture**: 
 - **Repository Pattern**: Abstracted data layer implementation
 - **SOLID Principles**: Applied consistently across codebase
 - **Dependency Injection**: Manual dependency setup via service locator
