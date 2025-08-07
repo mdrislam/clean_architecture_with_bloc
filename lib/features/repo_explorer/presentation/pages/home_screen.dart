@@ -125,7 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                     },
                     builder: (context, state) {
-                      if (state.isCachedData) {
+                      if (state.isCachedData &&
+                          state.status == RepoStatus.success &&
+                          state.repos.isNotEmpty) {
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

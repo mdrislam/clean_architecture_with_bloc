@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tikweb_task/core/constants/app_constants.dart';
-import 'package:tikweb_task/features/repo_explorer/data/models/repo_model.dart';
+
 import 'package:tikweb_task/features/repo_explorer/domain/usecases/fetch_repo_repository_usecase.dart';
 import 'package:tikweb_task/features/repo_explorer/presentation/bloc/repo_event.dart';
 import 'package:tikweb_task/features/repo_explorer/presentation/bloc/repo_state.dart';
@@ -37,9 +37,9 @@ class RepoBloc extends Bloc<RepoEvent, RepoState> {
       emit(
         state.copyWith(
           status: RepoStatus.success,
-          repos: repos,
-          hasReachedEnd: repos.length < perPage,
-          isCachedData: repos.isNotEmpty && repos.first is RepoModel,
+          repos: [...state.repos, ...repos.repos],
+          hasReachedEnd: repos.repos.length < perPage,
+          isCachedData: repos.isOffline,
         ),
       );
     } catch (e) {
@@ -55,6 +55,16 @@ class RepoBloc extends Bloc<RepoEvent, RepoState> {
   ) async {
     if (state.hasReachedEnd || state.status == RepoStatus.loadingMore) return;
 
+    if (state.isCachedData) {
+      emit(
+        state.copyWith(
+          status: RepoStatus.failure,
+          errorMessage: 'No more data available. Please refresh to load more.',
+        ),
+      );
+      return;
+    }
+
     try {
       emit(state.copyWith(status: RepoStatus.loadingMore));
 
@@ -68,8 +78,8 @@ class RepoBloc extends Bloc<RepoEvent, RepoState> {
       emit(
         state.copyWith(
           status: RepoStatus.success,
-          repos: [...state.repos, ...repos],
-          hasReachedEnd: repos.length < perPage,
+          repos: [...state.repos, ...repos.repos],
+          hasReachedEnd: repos.repos.length < perPage,
           page: nextPage,
         ),
       );

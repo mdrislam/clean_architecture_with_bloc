@@ -1,5 +1,6 @@
 import 'package:tikweb_task/core/constants/app_constants.dart';
-import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_entities.dart';
+
+import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_result.dart';
 import 'package:tikweb_task/features/repo_explorer/domain/repositories/repo_repository.dart';
 
 class FetchRepoRepositoryUsecase {
@@ -7,7 +8,7 @@ class FetchRepoRepositoryUsecase {
 
   FetchRepoRepositoryUsecase(this.repository);
 
-  Future<List<RepoEntity>> call({
+  Future<RepoResult> call({
     required String query,
     required int page,
     int perPage = AppConstants.perPage,

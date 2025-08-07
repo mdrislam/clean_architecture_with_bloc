@@ -4,6 +4,7 @@ import 'package:tikweb_task/core/network/network_info.dart';
 import 'package:tikweb_task/features/repo_explorer/data/datasource/repo_local_data_source.dart';
 import 'package:tikweb_task/features/repo_explorer/data/datasource/repo_remote_data_source.dart';
 import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_entities.dart';
+import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_result.dart';
 
 import 'package:tikweb_task/features/repo_explorer/domain/repositories/repo_repository.dart';
 
@@ -19,7 +20,7 @@ class RepoRepositoryImpl implements RepoRepository {
   });
 
   @override
-  Future<List<RepoEntity>> getRepositories({
+  Future<RepoResult> getRepositories({
     required String query,
     required int page,
     int perPage = AppConstants.perPage,
@@ -39,12 +40,18 @@ class RepoRepositoryImpl implements RepoRepository {
           await localDataSource.cacheRepositories(remoteRepos, query);
         }
 
-        return remoteRepos.map((repo) => repo.toEntity()).toList();
+        return RepoResult(
+          repos: remoteRepos.map((repo) => repo.toEntity()).toList(),
+          isOffline: false,
+        );
       } else {
         // Only load cached data for first page when offline
         if (page == 1) {
           final localRepos = await localDataSource.getCachedRepositories(query);
-          return localRepos.map((repo) => repo.toEntity()).toList();
+          return RepoResult(
+            repos: localRepos.map((repo) => repo.toEntity()).toList(),
+            isOffline: true,
+          );
         }
         throw NetworkException(message: 'No internet connection');
       }
