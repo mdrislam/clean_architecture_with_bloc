@@ -57,83 +57,99 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Repositories'),
-        titleSpacing: 10,
-        actions: [
-          BlocBuilder<ThemeBloc, ThemeMode>(
-            builder: (context, themeMode) {
-              final isDark = themeMode == ThemeMode.dark;
-              return Row(
-                children: [
-                  Text(
-                    isDark ? 'Dark Mode' : 'Light Mode',
-                    style: TextStyle(color: Theme.of(context).iconTheme.color),
-                  ),
-                  Switch(
-                    value: isDark,
-                    onChanged: (value) {
-                      final newTheme = value ? ThemeMode.dark : ThemeMode.light;
-                      context.read<ThemeBloc>().toggleTheme(newTheme);
-                    },
-                    activeColor: AppColors.white,
-                    activeTrackColor: AppColors.primary,
-                    inactiveThumbColor: AppColors.white,
-                    inactiveTrackColor: AppColors.grey400,
-                    trackOutlineColor: WidgetStateProperty.all(
-                      AppColors.transparent,
-                    ),
-                  ),
-                  const SizedBox(width: AppSizes.horizontalPadding / 2),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSizes.horizontalPadding,
-        ),
-        child: Column(
-          children: [
-            // Search bar below AppBar
-            HomeSearchbar(onSearch: _onSearchSubmitted),
-            const SizedBox(height: AppSizes.verticalSpacing),
-            Expanded(
-              child: BlocConsumer<RepoBloc, RepoState>(
-                listener: (context, state) {
-                  if (state.status == RepoStatus.failure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.errorMessage ?? 'Unknown error'),
-                      ),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  if (state.isCachedData) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Showing cached data'),
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
-                    });
-                  }
-                  return RefreshIndicator(
-                    onRefresh: () async {
-                      context.read<RepoBloc>().add(const RefreshRepoEvent());
-                    },
+    return Material(
+      color: AppColors.transparent,
+      child: InkWell(
+        onTap: () =>
+            FocusScope.of(context).unfocus(), // Dismiss keyboard on tap
 
-                    child: _buildBody(state),
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Repositories'),
+            titleSpacing: 10,
+            actions: [
+              BlocBuilder<ThemeBloc, ThemeMode>(
+                builder: (context, themeMode) {
+                  final isDark = themeMode == ThemeMode.dark;
+                  return Row(
+                    children: [
+                      Text(
+                        isDark ? 'Dark Mode' : 'Light Mode',
+                        style: TextStyle(
+                          color: Theme.of(context).iconTheme.color,
+                        ),
+                      ),
+                      Switch(
+                        value: isDark,
+                        onChanged: (value) {
+                          final newTheme = value
+                              ? ThemeMode.dark
+                              : ThemeMode.light;
+                          context.read<ThemeBloc>().toggleTheme(newTheme);
+                        },
+                        activeColor: AppColors.white,
+                        activeTrackColor: AppColors.primary,
+                        inactiveThumbColor: AppColors.white,
+                        inactiveTrackColor: AppColors.grey400,
+                        trackOutlineColor: WidgetStateProperty.all(
+                          AppColors.transparent,
+                        ),
+                      ),
+                      const SizedBox(width: AppSizes.horizontalPadding / 2),
+                    ],
                   );
                 },
               ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.horizontalPadding,
             ),
-          ],
+            child: Column(
+              children: [
+                // Search bar below AppBar
+                HomeSearchbar(onSearch: _onSearchSubmitted),
+                const SizedBox(height: AppSizes.verticalSpacing),
+                Expanded(
+                  child: BlocConsumer<RepoBloc, RepoState>(
+                    listener: (context, state) {
+                      if (state.status == RepoStatus.failure) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              state.errorMessage ?? 'Unknown error',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state.isCachedData) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Showing cached data'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        });
+                      }
+                      return RefreshIndicator(
+                        onRefresh: () async {
+                          context.read<RepoBloc>().add(
+                            const RefreshRepoEvent(),
+                          );
+                        },
+
+                        child: _buildBody(state),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

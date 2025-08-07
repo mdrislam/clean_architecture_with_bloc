@@ -25,14 +25,15 @@ class RepoRepositoryImpl implements RepoRepository {
     int perPage = AppConstants.perPage,
   }) async {
     final isConnected = await networkInfo.isConnected;
-    final remoteRepos = await remoteDataSource.searchRepositories(
-      query: query,
-      page: page,
-      perPage: perPage,
-    );
 
     try {
       if (isConnected) {
+        // Only call remote API when connected
+        final remoteRepos = await remoteDataSource.searchRepositories(
+          query: query,
+          page: page,
+          perPage: perPage,
+        );
         // Cache only first page
         if (page == 1) {
           await localDataSource.cacheRepositories(remoteRepos, query);
