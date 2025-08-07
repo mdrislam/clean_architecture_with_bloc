@@ -1,69 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:tikweb_task/core/values/app_sizes.dart';
+import 'app_colors.dart';
 
 class AppTheme {
   static ThemeData light() {
     return ThemeData(
-      primarySwatch: Colors.blue,
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: AppColors.lightScaffoldBackground,
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: AppColors.lightAppBarBackground,
+        foregroundColor: AppColors.lightAppBarForeground,
         titleSpacing: 0,
       ),
-      iconTheme: const IconThemeData(color: Colors.black87),
-      primaryIconTheme: const IconThemeData(color: Colors.black87),
+      iconTheme: const IconThemeData(color: AppColors.lightIconColor),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.grey.shade200,
+        fillColor: AppColors.lightInputFill,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppSizes.inputRadius),
           borderSide: BorderSide.none,
         ),
-        hintStyle: TextStyle(color: Colors.grey.shade600),
-        prefixIconColor: Colors.grey.shade700,
+        hintStyle: const TextStyle(color: AppColors.lightHintText),
+        prefixIconColor: AppColors.lightPrefixIcon,
         prefixIconConstraints: const BoxConstraints(
-          minWidth: 40,
-          minHeight: 40,
+          minWidth: AppSizes.iconConstant,
+          minHeight: AppSizes.iconConstant,
         ),
         isDense: true,
       ),
-
       cardTheme: CardThemeData(
-        color: Colors.grey.shade100,
-        elevation: 2,
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: AppColors.lightCardColor,
+        elevation: AppSizes.cardElevation,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 0,
+          vertical: AppSizes.cardMarginVertical,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+        ),
       ),
     );
   }
 
   static ThemeData dark() {
     return ThemeData.dark().copyWith(
-      primaryColor: Colors.blueGrey,
-      scaffoldBackgroundColor: Colors.grey[900],
-      appBarTheme: AppBarTheme(
-        backgroundColor: Colors.grey[900],
-        foregroundColor: Colors.white,
+      scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.darkAppBarBackground,
+        foregroundColor: AppColors.darkAppBarForeground,
         titleSpacing: 0,
       ),
-      iconTheme: const IconThemeData(color: Colors.white70),
-      primaryIconTheme: const IconThemeData(color: Colors.white70),
+      iconTheme: const IconThemeData(color: AppColors.darkIconColor),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.grey.shade800,
+        fillColor: AppColors.darkInputFill,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppSizes.inputRadius),
           borderSide: BorderSide.none,
         ),
-        hintStyle: TextStyle(color: Colors.grey.shade400),
-        prefixIconColor: Colors.grey.shade300,
+        hintStyle: const TextStyle(color: AppColors.darkHintText),
+        prefixIconColor: AppColors.darkPrefixIcon,
       ),
       cardTheme: CardThemeData(
-        color: Colors.grey.shade800,
-        elevation: 2,
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: AppColors.darkCardColor,
+        elevation: AppSizes.cardElevation,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 0,
+          vertical: AppSizes.cardMarginVertical,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+        ),
       ),
     );
   }

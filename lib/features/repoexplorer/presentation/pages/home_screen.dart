@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tikweb_task/core/theme/app_colors.dart';
+import 'package:tikweb_task/core/values/app_sizes.dart';
 import 'package:tikweb_task/features/repoexplorer/presentation/widgets/home_searchbar.dart';
 import 'package:tikweb_task/features/repoexplorer/presentation/widgets/repo_list_item.dart';
 
@@ -36,22 +38,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               });
             },
-            activeColor: Colors.white,
-            activeTrackColor: const Color.fromARGB(255, 115, 255, 120),
-            inactiveThumbColor: Colors.white,
-            inactiveTrackColor: Colors.grey[400],
-            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+            activeColor: AppColors.white,
+            activeTrackColor: AppColors.primary,
+            inactiveThumbColor: AppColors.white,
+            inactiveTrackColor: AppColors.grey400,
+            trackOutlineColor: WidgetStateProperty.all(AppColors.transparent),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: AppSizes.horizontalPadding / 2),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.horizontalPadding,
+        ),
         child: Column(
           children: [
             // Search bar below AppBar
             HomeSearchbar(controller: _searchController),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppSizes.verticalSpacing),
             Expanded(
               child: ListView.builder(
                 itemCount: 20, // Example item count
