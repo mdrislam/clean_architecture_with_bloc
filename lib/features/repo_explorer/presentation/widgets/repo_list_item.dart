@@ -16,9 +16,48 @@ class RepoListItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => DetailScreen(repo: repo)),
+          // );
+
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => DetailScreen()),
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  DetailScreen(repo: repo),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                    const curve = Curves.easeInOutCubicEmphasized;
+
+                    final slideAnimation = Tween<Offset>(
+                      begin: const Offset(0, 0.2),
+                      end: Offset.zero,
+                    ).chain(CurveTween(curve: curve)).animate(animation);
+
+                    final scaleAnimation = Tween<double>(
+                      begin: 0.95,
+                      end: 1.0,
+                    ).chain(CurveTween(curve: curve)).animate(animation);
+
+                    final fadeAnimation = Tween<double>(
+                      begin: 0.0,
+                      end: 1.0,
+                    ).chain(CurveTween(curve: curve)).animate(animation);
+
+                    return FadeTransition(
+                      opacity: fadeAnimation,
+                      child: SlideTransition(
+                        position: slideAnimation,
+                        child: ScaleTransition(
+                          scale: scaleAnimation,
+                          child: child,
+                        ),
+                      ),
+                    );
+                  },
+              transitionDuration: const Duration(milliseconds: 600),
+            ),
           );
         },
         child: Padding(

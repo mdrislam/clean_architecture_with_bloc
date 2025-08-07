@@ -3,13 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tikweb_task/core/bloc/theme_bloc.dart';
 import 'package:tikweb_task/core/theme/app_colors.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
+import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_entities.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final RepoEntity repo;
+  const DetailScreen({super.key, required this.repo});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class DetailScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Repository Name',
+                    repo.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -74,7 +76,7 @@ class DetailScreen extends StatelessWidget {
                     const Icon(Icons.star, size: AppSizes.iconSizeSM),
                     const SizedBox(width: AppSizes.horizontalPadding / 4),
                     // Assuming this is the star count
-                    Text('70'),
+                    Text(repo.stars.toString()),
                   ],
                 ),
                 const SizedBox(width: AppSizes.horizontalPadding / 3),
@@ -86,7 +88,7 @@ class DetailScreen extends StatelessWidget {
                     ),
 
                     // Assuming this is the fork count
-                    Text('10'),
+                    Text(repo.forks.toString()),
                   ],
                 ),
               ],
@@ -102,21 +104,19 @@ class DetailScreen extends StatelessWidget {
                       CircleAvatar(
                         radius: AppSizes.profileRadiousXL,
                         backgroundImage: CachedNetworkImageProvider(
-                          'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+                          repo.ownerAvatarUrl,
                         ),
                       ),
                       const SizedBox(height: AppSizes.verticalSpacing),
                       // Assuming repo.ownerName is the owner's name
                       Text(
-                        'ownerName',
+                        '@${repo.ownerName}',
                         maxLines: AppSizes.textMinLine,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const SizedBox(height: AppSizes.verticalSpacing),
                       InkWell(
-                        onTap: () => _launchUrl(
-                          'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-                        ),
+                        onTap: () => _launchUrl(repo.htmlUrl),
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -131,7 +131,7 @@ class DetailScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+                                repo.htmlUrl,
                                 maxLines: AppSizes.textMinLine,
                                 style: Theme.of(context).textTheme.bodyMedium!
                                     .copyWith(
@@ -151,12 +151,10 @@ class DetailScreen extends StatelessWidget {
 
             Text('Description'),
             const SizedBox(height: AppSizes.verticalSpacing),
-            // Assuming repo.description is the repository description
-            Text(
-              'This is a sample repository description that might be quite long and needs to be truncated if it exceeds the available space.',
-              maxLines: AppSizes.textMinLine,
-            ),
-            const SizedBox(height: AppSizes.verticalSpacing),
+            if (repo.description != null) ...[
+              Text(repo.description!, maxLines: AppSizes.textMaxLine),
+              const SizedBox(height: AppSizes.verticalSpacing),
+            ],
           ],
         ),
       ),
