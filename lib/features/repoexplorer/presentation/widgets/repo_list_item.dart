@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
+import 'package:tikweb_task/features/repoexplorer/presentation/pages/details_screen.dart';
 
 class RepoListItem extends StatelessWidget {
   const RepoListItem({super.key});
@@ -12,7 +13,12 @@ class RepoListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSizes.horizontalPadding),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DetailScreen()),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.horizontalPadding),
           child: Column(
@@ -42,7 +48,7 @@ class RepoListItem extends StatelessWidget {
 
               const SizedBox(height: AppSizes.verticalSpacing / 2),
               Text(
-                '@risadhossain', 
+                '@risadhossain',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
 

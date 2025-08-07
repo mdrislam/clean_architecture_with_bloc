@@ -12,6 +12,8 @@ class AppSizes {
   // Radius
   static const double borderRadius = 16.0;
   static const double inputRadius = 20.0;
+  static const double profileRadiousXL = 40.0;
+
 
   // Icon size
   static const double iconSizeSM = 16.0;
@@ -21,6 +23,7 @@ class AppSizes {
   // List item height, spacing etc.
   static const double cardElevation = 2.0;
   static const double cardMarginVertical = 4.0;
+
 
   // Other constants
   static const int textMinLine = 1;
