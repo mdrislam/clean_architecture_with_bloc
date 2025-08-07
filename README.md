@@ -1,6 +1,6 @@
 # GitHub Repository Explorer
 
-![App Banner](https://via.placeholder.com/1200x400?text=GitHub+Repository+Explorer)
+![App Banner](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/banner.png)
 
 A Flutter application that explores GitHub repositories with clean architecture, offline support, and pagination. The app allows users to search for repositories, view details, and works offline with cached data.
 
@@ -18,37 +18,38 @@ A Flutter application that explores GitHub repositories with clean architecture,
 
 ## Screenshots
 
-| Home Screen | Detail Screen | Dark Mode |
-|-------------|---------------|-----------|
-| ![Home Screen](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/home_light.jpeg) | ![Home Screen Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/home_dark.jpeg) | ![Details Screen](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/d_light.jpeg) | ![Details Screen Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/d_dark.jpeg)
+|               | Light Mode                          | Dark Mode                           |
+|---------------|-------------------------------------|-------------------------------------|
+| **Home Screen** | ![Home Light](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/home_light.jpeg) | ![Home Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/home_dark.jpeg) |
+| **Detail Screen** | ![Detail Light](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_light.jpeg) | ![Detail Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_dark.jpeg) |
 
 ## Architecture
 
 The app follows Clean Architecture with three main layers:
 lib/
-├── core/
-│   ├── constants/
-│   ├── errors/
-│   ├── network/
-│   ├── theme/
-│   └── utils/
+├── core/ # Framework-agnostic core (constants, errors, utils)
+│ ├── constants/
+│ ├── errors/
+│ ├── network/
+│ ├── theme/
+│ └── utils/
 ├── features/
-│   └── repo_explorer/
-│       ├── data/
-│       │   ├── datasources/
-│       │   ├── models/
-│       │   └── repositories/
-│       ├── domain/
-│       │   ├── entities/
-│       │   ├── repositories/
-│       │   └── usecases/
-│       └── presentation/
-│           ├── bloc/              # BLoC specific files
-│           │   ├── repo_bloc.dart
-│           │   ├── repo_event.dart
-│           │   └── repo_state.dart
-│           ├── pages/
-│           └── widgets/
+│ └── repo_explorer/
+│ ├── data/
+│ │ ├── datasources/
+│ │ ├── models/
+│ │ └── repositories/
+│ ├── domain/
+│ │ ├── entities/
+│ │ ├── repositories/
+│ │ └── usecases/
+│ └── presentation/
+│ ├── bloc/
+│ │ ├── repo_bloc.dart
+│ │ ├── repo_event.dart
+│ │ └── repo_state.dart
+│ ├── pages/
+│ └── widgets/
 ├── injection_container.dart
 └── main.dart
 
@@ -69,10 +70,11 @@ text
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/github-repo-explorer.git
+git clone https://github.com/mdrislam/tikweb_-task.git
 Install dependencies:
 
 bash
+cd tikweb_-task
 flutter pub get
 Run the app:
 
@@ -101,9 +103,9 @@ GET /search/repositories?q={query}+in:name&sort=stars&order=desc&page={page}&per
 Offline Support
 Caches API responses using SharedPreferences
 
-Shows cached data when offline
+Shows cached data when offline with visual indicator
 
-Visual indicator for cached data in the UI
+Automatic fallback to cached data on network errors
 
 Pagination
 Implements infinite scroll
@@ -172,7 +174,7 @@ Bonus Features Implemented
 ✅ Custom page transitions
 
 Demo Video
-Watch App Demo Replace with actual video link
+Watch App Demo
 
 Future Improvements
 Implement proper cache expiration policy
@@ -204,34 +206,6 @@ License
 Distributed under the MIT License. See LICENSE for more information.
 
 Contact
-Your Name - @yourtwitter - youremail@example.com
+Md. Rasel Islam - @mdrrasel404 - rasel.cse.kuet@gmail.com
 
-Project Link: https://github.com/yourusername/github-repo-explorer
-
-text
-
-### How to Use This README:
-
-1. Replace placeholder URLs:
-   - Update screenshot URLs with actual images
-   - Add your GitHub repository URL
-   - Include a link to your demo video
-
-2. Customize content:
-   - Update contact information
-   - Modify assumptions/limitations based on your implementation
-   - Add any project-specific notes
-
-3. Add screenshots:
-   - Replace placeholder image URLs with actual screenshots
-   - Consider adding GIFs for better demonstration
-
-4. Update testing section:
-   - Add specific test coverage details
-   - Include test execution statistics if available
-
-5. License:
-   - Choose appropriate license (MIT is common for open-source)
-   - Create a LICENSE file in your repository
-
-This README provides a professional, comprehensive overview of your project that directly addresses all requirements from the technical task. It follows best practices for open-source project documentation and gives reviewers a clear understanding of your implementation choices.
+Project Link: https://github.com/mdrislam/tikweb_-task
