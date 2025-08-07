@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tikweb_task/core/bloc/theme_bloc.dart';
 import 'package:tikweb_task/core/theme/app_colors.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
-import 'package:tikweb_task/features/repoexplorer/presentation/widgets/home_searchbar.dart';
-import 'package:tikweb_task/features/repoexplorer/presentation/widgets/repo_list_item.dart';
+import 'package:tikweb_task/features/repo_explorer/presentation/widgets/home_searchbar.dart';
+import 'package:tikweb_task/features/repo_explorer/presentation/widgets/repo_list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

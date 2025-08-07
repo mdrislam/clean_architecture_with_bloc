@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
-import 'package:tikweb_task/features/repoexplorer/presentation/pages/details_screen.dart';
+import 'package:tikweb_task/features/repo_explorer/presentation/pages/details_screen.dart';
 
 class RepoListItem extends StatelessWidget {
   const RepoListItem({super.key});

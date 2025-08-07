@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tikweb_task/core/bloc/theme_bloc.dart';
 import 'package:tikweb_task/core/theme/app_theme.dart';
-import 'package:tikweb_task/features/repoexplorer/presentation/pages/home_screen.dart';
+import 'package:tikweb_task/features/repo_explorer/presentation/pages/home_screen.dart';
 import 'package:tikweb_task/injection_container.dart' as di;
 
 void main() async {
