@@ -7,6 +7,7 @@ import 'package:tikweb_task/core/network/api_client.dart';
 import 'package:tikweb_task/core/network/network_info.dart';
 import 'package:tikweb_task/features/repo_explorer/data/datasource/repo_local_data_source.dart';
 import 'package:tikweb_task/features/repo_explorer/data/datasource/repo_remote_data_source.dart';
+import 'package:tikweb_task/features/repo_explorer/data/models/repo_model.dart';
 import 'package:tikweb_task/features/repo_explorer/data/repositories/repo_repository_impl.dart';
 import 'package:tikweb_task/features/repo_explorer/domain/repositories/repo_repository.dart';
 import 'package:tikweb_task/features/repo_explorer/domain/usecases/fetch_repo_repository_usecase.dart';
@@ -17,6 +18,8 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // Initialize Hive
   await Hive.initFlutter();
+  // ✅ Register Hive Adapter before using it
+  Hive.registerAdapter(RepoModelAdapter());
 
   final settingsBox = await Hive.openBox('settings');
   sl.registerSingleton<Box>(settingsBox);

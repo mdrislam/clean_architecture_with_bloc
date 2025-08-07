@@ -1,3 +1,4 @@
+import 'package:tikweb_task/core/constants/api_end_points.dart';
 import 'package:tikweb_task/core/constants/app_constants.dart';
 import 'package:tikweb_task/core/errors/exceptions.dart';
 import 'package:tikweb_task/core/network/api_client.dart';
@@ -24,7 +25,7 @@ class RepoRemoteDataSourceImpl implements RepoRemoteDataSource {
   }) async {
     try {
       final response = await apiClient.get(
-        '/search/repositories',
+        ApiEndPoints.repositories,
         queryParameters: {
           'q': '$query in:name',
           'sort': 'stars',
@@ -37,7 +38,6 @@ class RepoRemoteDataSourceImpl implements RepoRemoteDataSource {
       final items = response.data['items'] as List;
       return items.map((item) => RepoModel.fromJson(item)).toList();
     } catch (e) {
-      print('Error fetching repositories: $e');
       throw ServerException(message: 'Failed to fetch repositories');
     }
   }

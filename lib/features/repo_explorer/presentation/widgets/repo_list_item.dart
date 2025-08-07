@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
+import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_entities.dart';
 import 'package:tikweb_task/features/repo_explorer/presentation/pages/details_screen.dart';
 
 class RepoListItem extends StatelessWidget {
-  const RepoListItem({super.key});
+  final RepoEntity repo;
+  const RepoListItem({super.key, required this.repo});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class RepoListItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'Repo Name',
+                      repo.name,
                       maxLines: AppSizes.textMinLine,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
@@ -40,7 +42,7 @@ class RepoListItem extends StatelessWidget {
                     children: [
                       const Icon(Icons.star, size: AppSizes.iconSizeSM),
                       const SizedBox(width: AppSizes.horizontalPadding / 4),
-                      Text('77'),
+                      Text(repo.stars.toString()),
                     ],
                   ),
                 ],
@@ -48,17 +50,20 @@ class RepoListItem extends StatelessWidget {
 
               const SizedBox(height: AppSizes.verticalSpacing / 2),
               Text(
-                '@risadhossain',
+                '@${repo.ownerName}',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
 
               const SizedBox(height: AppSizes.verticalSpacing),
-              Text(
-                'This is a sample repository description that might be quite long and needs to be truncated if it exceeds the available space.',
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: AppSizes.textMaxLine,
-                overflow: TextOverflow.ellipsis,
-              ),
+
+              /// Description
+              if (repo.description != null && repo.description!.isNotEmpty)
+                Text(
+                  repo.description!,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: AppSizes.textMaxLine,
+                  overflow: TextOverflow.ellipsis,
+                ),
             ],
           ),
         ),

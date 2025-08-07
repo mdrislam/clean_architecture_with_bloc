@@ -30,6 +30,7 @@ class RepoRepositoryImpl implements RepoRepository {
       page: page,
       perPage: perPage,
     );
+
     try {
       if (isConnected) {
         // Cache only first page
