@@ -20,16 +20,37 @@ A Flutter application that explores GitHub repositories with clean architecture,
 
 | Home Screen | Detail Screen | Dark Mode |
 |-------------|---------------|-----------|
-| ![Home Screen](https://via.placeholder.com/300x600?text=Home+Screen) | ![Detail Screen](https://via.placeholder.com/300x600?text=Detail+Screen) | ![Dark Mode](https://via.placeholder.com/300x600?text=Dark+Mode) |
+| ![Home Screen](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/home_light.jpeg) | ![Home Screen Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/home_dark.jpeg) | ![Details Screen](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/d_light.jpeg) | ![Details Screen Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/refs/heads/main/assets_sc/d_dark.jpeg)
 
 ## Architecture
 
 The app follows Clean Architecture with three main layers:
 lib/
-├── core/ # Framework-agnostic core (constants, errors, utils)
-├── data/ # Data sources and repositories
-├── domain/ # Business logic and entities
-└── presentation/ # UI and presentation logic
+├── core/
+│   ├── constants/
+│   ├── errors/
+│   ├── network/
+│   ├── theme/
+│   └── utils/
+├── features/
+│   └── repo_explorer/
+│       ├── data/
+│       │   ├── datasources/
+│       │   ├── models/
+│       │   └── repositories/
+│       ├── domain/
+│       │   ├── entities/
+│       │   ├── repositories/
+│       │   └── usecases/
+│       └── presentation/
+│           ├── bloc/              # BLoC specific files
+│           │   ├── repo_bloc.dart
+│           │   ├── repo_event.dart
+│           │   └── repo_state.dart
+│           ├── pages/
+│           └── widgets/
+├── injection_container.dart
+└── main.dart
 
 text
 
