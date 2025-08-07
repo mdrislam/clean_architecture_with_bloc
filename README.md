@@ -77,7 +77,7 @@ lib/
 │
 ├── injection_container.dart   # Service locator for dependency injection
 └── main.dart                  # Application entry point
-
+```
 ## 📌 Key Components
 
 - **BLoC**: State management using `flutter_bloc`
@@ -170,13 +170,10 @@ flutter test test/features/repo_explorer/domain/usecases/fetch_repo_repository_u
 Or for the widget test:
 
 flutter test test/features/repo_explorer/presentation/pages/home_screen_test.dart
-
+```
 📞 Contact
-Project Maintainer: Risad Hossain
-
+Name: Risad Hossain
 Email: mmdrislam@gmail.com
-
 GitHub: https://github.com/mdrislam
-
 LinkedIn: https://www.linkedin.com/in/risadhossain/
 
