@@ -15,9 +15,6 @@ A **Flutter application** for exploring GitHub repositories with a clean archite
 - [Assumptions & Limitations](#assumptions--limitations)
 - [Testing](#testing)
 - [Bonus Features Implemented](#bonus-features-implemented)
-- [Future Improvements](#future-improvements)
-- [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ---
@@ -90,6 +87,42 @@ lib/
 
 ---
 
+🧪 Testing
+Unit tests for domain use cases and repository implementations
+
+Widget tests for key UI components like HomeScreen and RepoListItem
+
+Mocking via Mockito and generated mock files for API data source
+
+Tests cover successful data fetch, pagination, error scenarios, and loading states
+
+🎁 Bonus Features Implemented
+Shimmer loading animation for a smooth loading experience
+
+Pull-to-refresh to reload repository list
+
+Dark/light mode toggle supporting user preference
+
+Dependency injection manually structured for easy scalability
+
+Clear separation of concerns following SOLID principles
+
+🚀 Future Improvements
+Add authentication support for increased API rate limits and user-specific data
+
+Improve offline caching with background sync and cache expiration
+
+Add repository README viewer with Markdown rendering
+
+Implement favorites/starred repos with local persistence
+
+Add unit and widget tests coverage for full feature set
+
+Enhance error handling with specific messages for different API errors
+
+Improve UI/UX with animations and accessibility features
+---
+
 ## ⚙️ Setup Instructions
 
 ### ✅ Prerequisites
@@ -137,3 +170,13 @@ flutter test test/features/repo_explorer/domain/usecases/fetch_repo_repository_u
 Or for the widget test:
 
 flutter test test/features/repo_explorer/presentation/pages/home_screen_test.dart
+
+📞 Contact
+Project Maintainer: Risad Hossain
+
+Email: mmdrislam@gmail.com
+
+GitHub: https://github.com/mdrislam
+
+LinkedIn: https://www.linkedin.com/in/risadhossain/
+
