@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tikweb_task/core/bloc/theme_bloc.dart';
 import 'package:tikweb_task/core/theme/app_colors.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
 import 'package:tikweb_task/features/repoexplorer/presentation/widgets/home_searchbar.dart';
@@ -20,31 +22,34 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Repositories'),
         titleSpacing: 10,
         actions: [
-          Text(
-            'Dark Mode',
-            style: TextStyle(color: Theme.of(context).iconTheme.color),
-          ),
-          Switch(
-            value: Theme.of(context).brightness == Brightness.dark
-                ? true
-                : false,
-            onChanged: (value) {
-              setState(() {
-                // Toggle theme mode
-                if (value) {
-                  ThemeMode.system == ThemeMode.dark;
-                } else {
-                  ThemeMode.system == ThemeMode.light;
-                }
-              });
+          BlocBuilder<ThemeBloc, ThemeMode>(
+            builder: (context, themeMode) {
+              final isDark = themeMode == ThemeMode.dark;
+              return Row(
+                children: [
+                  Text(
+                    isDark ? 'Dark Mode' : 'Light Mode',
+                    style: TextStyle(color: Theme.of(context).iconTheme.color),
+                  ),
+                  Switch(
+                    value: isDark,
+                    onChanged: (value) {
+                      final newTheme = value ? ThemeMode.dark : ThemeMode.light;
+                      context.read<ThemeBloc>().toggleTheme(newTheme);
+                    },
+                    activeColor: AppColors.white,
+                    activeTrackColor: AppColors.primary,
+                    inactiveThumbColor: AppColors.white,
+                    inactiveTrackColor: AppColors.grey400,
+                    trackOutlineColor: WidgetStateProperty.all(
+                      AppColors.transparent,
+                    ),
+                  ),
+                  const SizedBox(width: AppSizes.horizontalPadding / 2),
+                ],
+              );
             },
-            activeColor: AppColors.white,
-            activeTrackColor: AppColors.primary,
-            inactiveThumbColor: AppColors.white,
-            inactiveTrackColor: AppColors.grey400,
-            trackOutlineColor: WidgetStateProperty.all(AppColors.transparent),
           ),
-          const SizedBox(width: AppSizes.horizontalPadding / 2),
         ],
       ),
       body: Padding(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tikweb_task/core/bloc/theme_bloc.dart';
 import 'package:tikweb_task/core/theme/app_colors.dart';
 import 'package:tikweb_task/core/values/app_sizes.dart';
 
@@ -19,22 +21,35 @@ class DetailScreen extends StatelessWidget {
         ),
         title: Text('Details', style: TextStyle(fontWeight: FontWeight.w500)),
         actions: [
-          Row(
-            children: [
-              Text('Dark Mode', style: TextStyle(fontWeight: FontWeight.w500)),
-              Switch(
-                value: Theme.of(context).brightness == Brightness.dark,
-                onChanged: (val) {},
+          BlocBuilder<ThemeBloc, ThemeMode>(
+            builder: (context, themeMode) {
+              final isDark = themeMode == ThemeMode.dark;
+              return Row(
+                children: [
+                  Text(
+                    isDark ? 'Dark Mode' : 'Light Mode',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  Switch(
+                    value: isDark,
+                    onChanged: (val) {
+                      final newTheme = val ? ThemeMode.dark : ThemeMode.light;
+                      context.read<ThemeBloc>().toggleTheme(newTheme);
+                    },
 
-                activeColor: AppColors.white,
-                activeTrackColor: AppColors.primary,
-                inactiveThumbColor: AppColors.white,
-                inactiveTrackColor: AppColors.grey400,
-                trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
-              ),
+                    activeColor: AppColors.white,
+                    activeTrackColor: AppColors.primary,
+                    inactiveThumbColor: AppColors.white,
+                    inactiveTrackColor: AppColors.grey400,
+                    trackOutlineColor: WidgetStateProperty.all(
+                      Colors.transparent,
+                    ),
+                  ),
 
-              const SizedBox(width: AppSizes.horizontalPadding / 2),
-            ],
+                  const SizedBox(width: AppSizes.horizontalPadding / 2),
+                ],
+              );
+            },
           ),
         ],
       ),
@@ -69,7 +84,7 @@ class DetailScreen extends StatelessWidget {
                       Icons.fork_left_sharp,
                       size: AppSizes.iconSizeSM,
                     ),
-                    
+
                     // Assuming this is the fork count
                     Text('10'),
                   ],
@@ -134,13 +149,12 @@ class DetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.verticalSpacing),
 
-            Text('Description',),
+            Text('Description'),
             const SizedBox(height: AppSizes.verticalSpacing),
             // Assuming repo.description is the repository description
             Text(
               'This is a sample repository description that might be quite long and needs to be truncated if it exceeds the available space.',
               maxLines: AppSizes.textMinLine,
-              
             ),
             const SizedBox(height: AppSizes.verticalSpacing),
           ],
