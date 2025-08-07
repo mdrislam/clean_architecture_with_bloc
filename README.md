@@ -1,7 +1,5 @@
 # GitHub Repository Explorer
 
-![App Banner](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/banner.png)
-
 A Flutter application that explores GitHub repositories with clean architecture, offline support, and pagination. The app allows users to search for repositories, view details, and works offline with cached data.
 
 ## Features
@@ -22,6 +20,12 @@ A Flutter application that explores GitHub repositories with clean architecture,
 |---------------|-------------------------------------|-------------------------------------|
 | **Home Screen** | ![Home Light](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/home_light.jpeg) | ![Home Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/home_dark.jpeg) |
 | **Detail Screen** | ![Detail Light](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_light.jpeg) | ![Detail Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_dark.jpeg) |
+
+## Demo Video
+
+[![App Demo](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_light.jpeg)](https://github.com/mdrislam/tikweb_-task/blob/main/assets_sc/demo.mp4)
+
+Click the image above to watch the full app demo
 
 ## Architecture
 
@@ -172,9 +176,6 @@ Bonus Features Implemented
 ✅ Modular folder structure
 
 ✅ Custom page transitions
-
-Demo Video
-Watch App Demo
 
 Future Improvements
 Implement proper cache expiration policy
