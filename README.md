@@ -37,14 +37,14 @@ A **Flutter application** for exploring GitHub repositories with a clean archite
 
 |               | Light Mode                          | Dark Mode                           |
 |---------------|-------------------------------------|-------------------------------------|
-| **Home Screen** | ![Home Light](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/home_light.jpeg) | ![Home Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/home_dark.jpeg) |
-| **Detail Screen** | ![Detail Light](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_light.jpeg) | ![Detail Dark](https://raw.githubusercontent.com/mdrislam/tikweb_-task/main/assets_sc/d_dark.jpeg) |
+| **Home Screen** | ![Home Light](https://raw.githubusercontent.com/mdrislam/clean_architecture_with_bloc/main/assets_sc/home_light.jpeg) | ![Home Dark](https://raw.githubusercontent.com/mdrislam/clean_architecture_with_bloc/main/assets_sc/home_dark.jpeg) |
+| **Detail Screen** | ![Detail Light](https://raw.githubusercontent.com/mdrislam/clean_architecture_with_bloc/main/assets_sc/d_light.jpeg) | ![Detail Dark](https://raw.githubusercontent.com/mdrislam/clean_architecture_with_bloc/main/assets_sc/d_dark.jpeg) |
 
 ---
 
 ## 🎥 Demo Video
 
-[Click here to watch the full app demo](https://github.com/mdrislam/tikweb_-task/blob/main/assets_sc/demo.mp4)
+[Click here to watch the full app demo](https://github.com/mdrislam/clean_architecture_with_bloc/blob/main/assets_sc/demo.mp4)
 
 
 ## 📂 Project Structure
@@ -135,10 +135,10 @@ Improve UI/UX with animations and accessibility features
 
 ```bash
 # Clone the repository
-git clone https://github.com/mdrislam/tikweb_-task.git
+git clone https://github.com/mdrislam/clean_architecture_with_bloc.git
 
 # Navigate to the project directory
-cd tikweb_-task
+cd clean_architecture_with_bloc
 
 # Install dependencies
 flutter pub get
