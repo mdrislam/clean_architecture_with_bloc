@@ -20,6 +20,7 @@ class RepoListItem extends StatelessWidget {
           //   context,
           //   MaterialPageRoute(builder: (context) => DetailScreen(repo: repo)),
           // );
+          
 
           Navigator.push(
             context,

@@ -3,7 +3,6 @@ import 'package:tikweb_task/core/errors/exceptions.dart';
 import 'package:tikweb_task/core/network/network_info.dart';
 import 'package:tikweb_task/features/repo_explorer/data/datasource/repo_local_data_source.dart';
 import 'package:tikweb_task/features/repo_explorer/data/datasource/repo_remote_data_source.dart';
-import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_entities.dart';
 import 'package:tikweb_task/features/repo_explorer/domain/entities/repo_result.dart';
 
 import 'package:tikweb_task/features/repo_explorer/domain/repositories/repo_repository.dart';

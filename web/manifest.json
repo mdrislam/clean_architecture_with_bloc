@@ -1,6 +1,6 @@
 {
-    "name": "tikweb_task",
-    "short_name": "tikweb_task",
+    "name": "clean_architecture_with_bloc",
+    "short_name": "clean_architecture_with_bloc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
